@@ -10,4 +10,6 @@ public interface CustomerService {
     List<Customer>  getAllCustomers();
 
     Customer updateCustomer(Long id, Customer customer);
+
+    void deleteCustomer(Long id);
 }
