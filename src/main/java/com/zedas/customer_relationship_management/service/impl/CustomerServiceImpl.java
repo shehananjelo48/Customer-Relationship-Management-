@@ -6,6 +6,7 @@ import com.zedas.customer_relationship_management.service.CustomerService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -18,5 +19,10 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer createCustomer(Customer customer) {
         customer.setCreatedDate(LocalDateTime.now());
         return customerRepository.save(customer);
+    }
+
+    @Override
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
     }
 }
