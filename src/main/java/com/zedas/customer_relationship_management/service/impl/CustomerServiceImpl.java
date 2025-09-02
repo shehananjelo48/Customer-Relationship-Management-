@@ -25,4 +25,20 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
+
+    @Override
+    public Customer updateCustomer(Long id, Customer customer) {
+        return customerRepository.findById(id).map(existingCustomer -> {
+            existingCustomer.setFirstName(customer.getFirstName());
+            existingCustomer.setLastName(customer.getLastName());
+            existingCustomer.setEmail(customer.getEmail());
+            existingCustomer.setPhoneNumber(customer.getPhoneNumber());
+            existingCustomer.setAddress(customer.getAddress());
+            existingCustomer.setCity(customer.getCity());
+            existingCustomer.setState(customer.getState());
+            existingCustomer.setCountry(customer.getCountry());
+            existingCustomer.setCreatedDate(LocalDateTime.now());
+            return customerRepository.save(existingCustomer);
+        }).orElse(null);
+    }
 }
